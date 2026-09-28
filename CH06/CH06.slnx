@@ -1,0 +1,12 @@
+<Solution>
+  <Project Path="CH06Q01/CH06Q01.csproj" />
+  <Project Path="CH06Q02/CH06Q02.csproj" />
+  <Project Path="CH06Q03/CH06Q03.csproj" Id="8545533a-04d0-4629-90db-c3bc098d6b79" />
+  <Project Path="CH06Q04/CH06Q04.csproj" Id="24047b61-2519-44c9-a909-c5308764b05c" />
+  <Project Path="CH06Q05/CH06Q05.csproj" Id="32ba7ebb-8e15-4d9f-a76d-374e31d7e57e" />
+  <Project Path="CH06Q06/CH06Q06.csproj" Id="724bbca0-3187-4b47-b277-d9684ce28018" />
+  <Project Path="CH06Q07/CH06Q07.csproj" Id="4b8d420c-08d7-40e4-ade7-2b0ee27a3596" />
+  <Project Path="CH06Q08/CH06Q08.csproj" Id="ff766b2a-3fb4-4979-aa09-1e79b3d4df0a" />
+  <Project Path="CH06Q09/CH06Q09.csproj" Id="c9e38840-137f-43d7-8572-df538edacb1a" />
+  <Project Path="CH06Q10/CH06Q10.csproj" Id="213e4613-da5b-4498-813d-998109c99796" />
+</Solution>
