@@ -1,32 +1,20 @@
 ﻿using System;
 
 int n = int.Parse(Console.ReadLine());
-int i = 1;
 int count = 0;
+string memo  = string.Empty;
 
-while (i <= n)
+for(int i =0; i < n; i++)
 {
     string s = Console.ReadLine();
     if(s == "")
     {
-        i++;
         continue;
     }
-    else if(i == 1)
-    {
-        Console.Write($"메모: [{s}");
-        count++;
-    }
-    else if(i == n)
-    {
-        Console.Write($", {s}]");
-        count++;
-    }
-    else
-    {
-        Console.WriteLine($", {s}");
-        count++;
-    }
-    i++;
-    Console.WriteLine($"남긴 메모: {count}");
+    count++;
+    memo += ((count == 1) ? s : ", " + s);
+    
 }
+
+Console.WriteLine($"메모:[{memo}]");
+Console.WriteLine($"남긴 메모: {count}");
