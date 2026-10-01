@@ -1,0 +1,12 @@
+<Solution>
+  <Project Path="CH12Q01/CH12Q01.csproj" />
+  <Project Path="CH12Q02/CH12Q02.csproj" />
+  <Project Path="CH12Q03/CH12Q03.csproj" />
+  <Project Path="CH12Q04/CH12Q04.csproj" />
+  <Project Path="CH12Q05/CH12Q05.csproj" />
+  <Project Path="CH12Q06/CH12Q06.csproj" />
+  <Project Path="CH12Q07/CH12Q07.csproj" />
+  <Project Path="CH12Q08/CH12Q08.csproj" />
+  <Project Path="CH12Q09/CH12Q09.csproj" />
+  <Project Path="CH12Q10/CH12Q10.csproj" />
+</Solution>
