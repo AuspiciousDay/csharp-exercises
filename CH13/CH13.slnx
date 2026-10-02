@@ -1,4 +1,8 @@
 <Solution>
   <Project Path="CH13Q01/CH13Q01.csproj" />
   <Project Path="CH13Q02/CH13Q02.csproj" />
+  <Project Path="CH13Q03/CH13Q03.csproj" Id="94d3a91d-fe59-4ed0-b14d-a060f27984a9" />
+  <Project Path="CH13Q04/CH13Q04.csproj" Id="4f384656-dd56-4c27-9210-ba9dee530dfe" />
+  <Project Path="CH13Q05/CH13Q05.csproj" Id="6e9bebac-ea81-4e26-abf5-6851b676d77a" />
+  <Project Path="CH13Q10/CH13Q10.csproj" Id="73f3dd74-632e-41c3-9f53-5566e7697713" />
 </Solution>

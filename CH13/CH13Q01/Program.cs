@@ -10,11 +10,11 @@ code = code.Trim();
 code = code.ToUpper();
 code = code.Replace("-", "");
 
-if(code.Length == 0)
+if (code.Length == 0)
 {
     Console.WriteLine("등록 불가");
 }
 else
 {
-    Console.WriteLine($"코드: [{code.PadLeft(6,'0')}]");
+    Console.WriteLine($"코드: [{code.PadLeft(6, '0')}]");
 }
