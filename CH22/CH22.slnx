@@ -1,3 +1,8 @@
 <Solution>
   <Project Path="CH22Q01/CH22Q01.csproj" />
+  <Project Path="CH22Q02/CH22Q02.csproj" Id="cda644ae-6eed-4394-af3b-e9530875e3e4" />
+  <Project Path="CH22Q03/CH22Q03.csproj" Id="dc50bfc7-5057-4cf0-914d-d547e1bc0cac" />
+  <Project Path="CH22Q04/CH22Q04.csproj" Id="40690be8-2bda-4e2f-b5fb-118feb75a72f" />
+  <Project Path="CH22Q05/CH22Q05.csproj" Id="99660024-b7c1-40bc-b452-133dc7f8bc44" />
+  <Project Path="CH22Q06/CH22Q06.csproj" Id="4ab59430-dd82-470e-8f82-861622c58700" />
 </Solution>
