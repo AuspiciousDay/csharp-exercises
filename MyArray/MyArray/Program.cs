@@ -1,71 +1,122 @@
 ﻿using System;
+using System.Linq;
 
-Console.Write("점수 입력: ");
-string score = Console.ReadLine();
-string[] strings = score.Split(' ');
-int[] scores = new int[strings.Length];
-for (int i = 0; i < strings.Length; i++)
+class Monster
 {
-    scores[i] = int.Parse(strings[i]);
-}
+    public string Name { get; }
+    public int Power { get; }
 
-Console.Write($"입력한 점수: ");
-MyArray.ForEach(scores, n => Console.Write($"{n}점 "));
-
-Console.Write($"\n60점 이상 인원: {MyArray.Count(scores, n => n >= 60)}명");
-
-Console.Write($"\n만점 존재 여부: {MyArray.Exists(scores, n => n == 100)}");
-
-Console.Write($"\n첫 90점 이상 위치: {MyArray.FindIndex(scores, n => n >= 90)}");
-
-int[] passed = MyArray.Filter(scores, n => n >= 60);
-Console.Write($"\n60점 이상 점수: [");
-for (int i = 0; i < passed.Length; i++)
-{
-    Console.Write($"{passed[i]}");
-    if (i != passed.Length - 1)
+    public Monster(string name, int power)
     {
-        Console.Write(", ");
+        Name = name;
+        Power = power;
+    }
+
+    public override string ToString()
+    {
+        return $"{Name}({Power})";
     }
 }
-Console.Write($"]");
 
-Console.Write($"\n짝수 점수: [");
-for (int i = 0; i < MyArray.Filter(scores, IsEven).Length; i++)
+class Program
 {
-    Console.Write($"{MyArray.Filter(scores, IsEven)[i]}");
-    if (i != MyArray.Filter(scores, IsEven).Length - 1)
+    static void Main(string[] args)
     {
-        Console.Write(", ");
-    }
-}
-Console.Write($"]");
+        Console.WriteLine("=== 정수 배열 ===");
+        int[] scores = MyArray.ConvertAll("72 95 48 100 60 91 55".Split(' '), int.Parse);
 
-MyArray.Transform(passed, n => Math.Min(n + 5, 100));
-Console.Write($"\n보정 점수: [");
-for (int i = 0; i < passed.Length; i++)
-{
-    Console.Write($"{passed[i]}");
-    if (i != passed.Length - 1)
+        Console.Write("점수: ");
+        MyArray.ForEach(scores, n => Console.Write($"{n}점 "));
+        Console.WriteLine();
+
+        Console.WriteLine($"60점 이상 인원: {MyArray.Count(scores, n => n >= 60)}명");
+
+        int index = MyArray.FindIndex(scores, n => n >= 90);
+        Console.WriteLine($"첫 90점 이상 위치: {(index == -1 ? "없음" : index.ToString())}");
+
+        Console.Write("합격 여부: ");
+        PrintArray(MyArray.ConvertAll(scores, n => n >= 60 ? "합격" : "불합격"));
+
+        MyArray.Sort(scores);
+        Console.Write("점수 오름차순: ");
+        PrintArray(scores);
+
+        Console.WriteLine();
+        Console.WriteLine("=== 문자열 배열 ===");
+        string[] words = { "banana", "kiwi", "apple", "fig", "cherry", "grape" };
+
+        Console.Write("단어: ");
+        PrintArray(words);
+
+        Console.Write("5글자 이상 단어: ");
+        PrintArray(MyArray.Filter(words, n => n.Length >= 5));
+
+        Console.WriteLine($"k로 시작하는 단어 존재 여부: {MyArray.Exists(words, n => n[0] == 'k')}");
+
+        Console.Write("단어 길이: ");
+        PrintArray(MyArray.ConvertAll(words, n => n.Length));
+
+        MyArray.Sort(words);
+        Console.Write("사전 순 정렬: ");
+        PrintArray(words);
+
+        MyArray.Sort(words, (a, b) => a.Length.CompareTo(b.Length));
+        Console.Write("길이 순 정렬: ");
+        PrintArray(words);
+
+        MyArray.Transform(words, n => n.ToUpper());
+        Console.Write("대문자 변환: ");
+        PrintArray(words);
+
+        Console.WriteLine();
+        Console.WriteLine("=== 몬스터 배열 ===");
+        Monster[] monsters =
+        {
+            new Monster("슬라임", 10),
+            new Monster("고블린", 30),
+            new Monster("오크", 55),
+            new Monster("드래곤", 120),
+            new Monster("박쥐", 15),
+            new Monster("트롤", 55),
+        };
+
+        Console.Write("몬스터: ");
+        PrintArray(monsters);
+
+        Console.Write("파워 50 이상: ");
+        PrintArray(MyArray.Filter(monsters, n => n.Power >= 50));
+
+        Console.WriteLine($"드래곤 위치: {MyArray.FindIndex(monsters, n => n.Name == "드래곤")}");
+
+        Console.Write("이름 목록: ");
+        PrintArray(MyArray.ConvertAll(monsters, n => n.Name));
+
+        MyArray.Sort(monsters, (a, b) => a.Name.CompareTo(b.Name));
+        Console.Write("이름 오름차순: ");
+        PrintArray(monsters);
+
+        MyArray.Sort(monsters, (a, b) => b.Name.CompareTo(a.Name));
+        Console.Write("이름 내림차순: ");
+        PrintArray(monsters);
+
+        MyArray.Sort(monsters, (a, b) => a.Power.CompareTo(b.Power));
+        Console.Write("파워 오름차순: ");
+        PrintArray(monsters);
+
+        MyArray.Sort(monsters, (a, b) => b.Power.CompareTo(a.Power));
+        Console.Write("파워 내림차순: ");
+        PrintArray(monsters);
+    }
+
+    static void PrintArray<T>(T[] array)
     {
-        Console.Write(", ");
+        Console.Write("[");
+        for (int i = 0; i < array.Length; i++)
+        {
+            Console.Write(array[i]);
+            if (i < array.Length - 1)
+                Console.Write(", ");
+        }
+        Console.WriteLine("]");
     }
-}
-Console.Write($"]");
-
-
-Console.Write($"\n보정 점수 내림차순: [");
-for (int i = 0; i < MyArray.Sort(passed, (x, y) => y.CompareTo(x)).Length; i++)
-{
-    Console.Write($"{MyArray.Sort(passed, (x, y) => y.CompareTo(x))[i]}");
-    if (i != MyArray.Sort(passed, (x, y) => y.CompareTo(x)).Length - 1)
-    {
-        Console.Write(", ");
-    }
-}
-Console.Write($"]");
-
-static bool IsEven(int n)
-{
-    return n % 2 == 0;
 }
