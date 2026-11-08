@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="CH16Q01/CH16Q01.csproj" />
+  <Project Path="CH16Q02/CH16Q02.csproj" />
+  <Project Path="CH16Q03/CH16Q03.csproj" />
+  <Project Path="CH16Q04/CH16Q04.csproj" />
+  <Project Path="CH16Q05/CH16Q05.csproj" />
+  <Project Path="CH16Q06/CH16Q06.csproj" />
+  <Project Path="CH16Q08/CH16Q08.csproj" />
+</Solution>
