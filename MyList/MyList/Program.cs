@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 public class MyList<T> : IList<T>
 {
@@ -14,11 +13,11 @@ public class MyList<T> : IList<T>
         count = 0;
     }
 
-    public T this[int index] 
+    public T this[int index]
     {
         get
         {
-            if(index < 0 || index >= count)
+            if (index < 0 || index >= count)
             {
                 throw new ArgumentOutOfRangeException();
             }
@@ -30,6 +29,7 @@ public class MyList<T> : IList<T>
             {
                 throw new ArgumentOutOfRangeException();
             }
+            array[index] = value;
         }
     }
 
@@ -39,76 +39,119 @@ public class MyList<T> : IList<T>
 
     public void Add(T item)
     {
+        if (count >= array.Length)
+        {
+            Capacity();
+        }
+        array[count] = item;
         count++;
-        if(count > array.Length)
-        {
-            T[] values = new T[array.Length * 2];
-            for(int i = 0; i < array.Length; i++)
-            {
-                values[i] = array[i];
-            }
-            array = new T[values.Length];
-            for (int i = 0; i < values.Length; i++)
-            {
-                array[i] = values[i];
-            }
-            array[count] = item;
-        }
-        else
-        {
-            array[count] = item;
-        }
     }
 
     public void Clear()
     {
-        for(int i = 0; i < Count; i++)
-        {
-            array[i] = default;
-        }
         count = 0;
     }
 
     public bool Contains(T item)
     {
-        throw new NotImplementedException();
+        return IndexOf(item) != -1 ? true : false;
     }
 
-    public void CopyTo(T[] array, int arrayIndex) 
+    public void CopyTo(T[] array, int arrayIndex)
     {
-        for(int i = arrayIndex; i < array.Length; i++)
+        // Array.Copy(this.array,0,array,arrayIndex,count);
+        if (array == null)
         {
-            Add(array[i]);
+            throw new ArgumentOutOfRangeException();
+        }
+        if (arrayIndex < 0 || arrayIndex > array.Length)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+        if (array.Length - arrayIndex < count)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+        for (int i = 0; i < count; i++)
+        {
+            array[arrayIndex + i] = this.array[i];
         }
     }
 
     public IEnumerator<T> GetEnumerator()
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < Count; i++)
+        {
+            yield return array[i];
+        }
     }
 
     public int IndexOf(T item)
     {
-        throw new NotImplementedException();
+        // return Array.IndexOf(array, item);
+        for (int i = 0; i < Count; i++)
+        {
+            if (Equals(item, array[i]))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void Insert(int index, T item)
     {
-        throw new NotImplementedException();
+        if (index < 0 || index > count)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+        if (count >= array.Length)
+        {
+            Capacity();
+        }
+        if (index < count)
+        {
+            Array.Copy(array, index, array, index + 1, count - index);
+        }
+        array[index] = item;
+        count++;
     }
 
     public bool Remove(T item)
     {
-        throw new NotImplementedException();
+        int index = IndexOf(item);
+        if (index >= 0)
+        {
+            RemoveAt(index);
+            return true;
+        }
+        return false;
     }
 
     public void RemoveAt(int index)
     {
-        throw new NotImplementedException();
+        if (index < 0 || index >= count)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+        Array.Copy(array, index + 1, array, index, count - index - 1);
+        count--;
+        array[count] = default;
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
+    }
+
+    private void Capacity()
+    {
+        if (count == array.Length)
+        {
+            int newCapacity = array.Length * 2;
+            T[] newArray = new T[newCapacity];
+            Array.Copy(array, newArray, count);
+            array = newArray;
+        }
     }
 }
